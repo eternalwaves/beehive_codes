@@ -1,0 +1,42 @@
+<template name="blog">
+    <div class="blog">
+        <h2 class="title">Blog</h2>
+
+        <section class="h-feed">
+            {{#each posts}}
+                <article class="h-entry">
+                    <header>
+                        <h3 class="p-name"><a href="{{pathFor 'blogShow'}}">{{title}}</a></h3>
+
+                        <ul class="post-info">
+                            <li class="author">Author:
+                            {{#if username}}
+                                <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}">{{authorName}}</a>
+                            {{else}}
+                                {{authorName}}
+                            {{/if}}</li>
+                            <li class="date">Published: <time class="dt-published" datetime="{{blogFormatDate publishedAt}}">{{blogFormatDate publishedAt}}</time></li>
+                            {{> blogTagTemplate}}
+                            <li>Permalink: <a href="{{baseURL}}{{pathFor 'blogShow'}}">{{baseURL}}{{pathFor 'blogShow'}}</a></li>
+                        </ul>
+                    </header>
+                    <section class="e-content">
+                        {{{excerpt}}}
+                    </section>
+                </article>
+
+                <p><a href="{{pathFor 'blogShow'}}">[Read more]</a></p>
+            {{else}}
+                <p>There are no posts yet!</p>
+            {{/each}}
+
+            {{blogPager}}
+        </section>
+    </div>
+</template>
+
+<template name="blogTagTemplate">
+    {{#if tags}}
+        <li class="post-tags">Tags: {{blogFormatTags tags}}</li>
+    {{/if}}
+</template>

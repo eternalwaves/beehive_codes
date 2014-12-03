@@ -1,0 +1,52 @@
+<template name="layout">
+    <nav id="main-nav" role="navigation">
+        {{> nav}}
+    </nav>
+    <header>
+        {{> header}}
+    </header>
+    <main>
+        {{> yield}}
+    </main>
+    <footer>
+        {{> footer}}
+    </footer>
+</template>
+
+<template name="nav">
+    <ul>
+        {{#each links}}<li><a class="{{isCurrent route}}" href="{{pathFor route}}">{{text}}</a></li>{{/each}}
+    </ul>
+</template>
+
+<template name="header">
+    <h1><a href="{{pathFor 'home'}}"><img class="logo" src="/img/logo.png" alt="{{getSiteTitle}}"></a></h1>
+
+    {{> social}}
+</template>
+
+<template name="social">
+    <ul id="social">
+        {{#each links}}<li><a class="{{site}}" href="{{link}}" target="{{target}}"><img src="/img/social-icons/trans.gif" alt="{{text}}" title="{{text}}"></a></li>{{/each}}
+    </ul>
+</template>
+
+<template name="footer">
+    <div class="columns">
+        <section class="half">
+            <h2>About</h2>
+
+            <p>I am Elizabeth Kilrain, a developer and designer living and working in sunny San Diego, California.</p>
+        </section><section class="half">
+            <h2>Contact</h2>
+
+            <p>You can get a hold of me by shooting me a message at <a href="mailto:elizabeth@beehive.codes">elizabeth@beehive.codes</a>.</p>
+        </section>
+    </div>
+
+    <p class="sub">&copy; Copyright 2014. Design &amp; code by Elizabeth Lynn Rakphongphairoj Kilrain.</p>
+
+    <nav role="navigation">
+        {{> nav}}
+    </nav>
+</template>

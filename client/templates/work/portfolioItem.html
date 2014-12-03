@@ -1,0 +1,23 @@
+<template name="portfolioItem">
+    <div class="portfolio-item">
+        <h2>{{title}}</h2>
+
+        <div class="columns">
+            <section class="description half">
+                <ul class="categories">
+                    {{#each categories}}<li><a href="{{pathFor 'workCategory' category=this}}">{{this}}</a></li>{{/each}}
+                </ul>
+                
+                {{{description}}}
+            </section>
+
+            <section class="images half">
+            {{#each images}}
+                <figure>
+                    <img src="/portfolio/{{resolutionPath}}{{this}}" alt="{{title}}">
+                </figure>
+            {{/each}}
+            </section>
+        </div>
+    </div>
+</template>

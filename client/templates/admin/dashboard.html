@@ -1,0 +1,11 @@
+<template name="dashboard">
+    <p>Welcome, {{currentUser.profile.name}}! {{>logout}}</p>
+
+    <p>Would you like to:</p>
+
+    <ul>
+        <li><a href="{{pathFor 'adminProfile'}}">View / Edit your profile</a></li>
+        <li><a href="{{pathFor 'changePassword'}}">Change your password</a></li>
+        <li><a href="{{pathFor 'blogAdmin'}}">Write / Edit a blog entry</a></li>
+    </ul>
+</template>

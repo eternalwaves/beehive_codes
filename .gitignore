@@ -1,0 +1,8 @@
+*.db
+sftp-config.json
+mup.json
+client/helpers/admin/editProfile.js
+client/templates/admin/editProfile.html
+packages
+server/smtp.js
+server/kadira.js

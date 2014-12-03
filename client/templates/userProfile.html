@@ -1,0 +1,29 @@
+<template name="userProfile">
+    <div class="user">
+        <h2 class="title">User Profile</h2>
+
+        {{>displayUserProfile}}
+    </div>
+</template>
+
+<template name="displayUserProfile">
+    <div><h3 class="inline">Name:</h3> <span id="profile-name">{{name}}</span></div>
+
+    <div><h3 class="inline">Username:</h3> <span id="profile-username">{{username}}</span></div>
+
+    {{#if emails}}
+    <h3>Email(s):</h3>
+
+    <ul id="profile-emails">
+        {{#each emails}}
+            {{#if public}}<li><span class="profile-email"><a href="mailto:{{address}}">{{address}}</a></span></li>{{/if}}
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#if about}}
+        <h3>About:</h3>
+
+        <div id="profile-about">{{{about}}}</div>
+    {{/if}}
+</template>

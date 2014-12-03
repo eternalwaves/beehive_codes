@@ -1,0 +1,24 @@
+<template name="singlePost">
+    <div class="blog">
+        <article class="h-entry single-post">
+            <header>
+                <h2 class="p-name">{{title}}</h2>
+
+                <ul class="post-info">
+                    <li class="author">Author:
+                    {{#if username}}
+                        <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}">{{authorName}}</a>
+                    {{else}}
+                        {{authorName}}
+                    {{/if}}</li>
+                    <li class="date">Published: <time class="dt-published" datetime="{{blogFormatDate publishedAt}}">{{blogFormatDate publishedAt}}</time></li>
+                    {{> blogTagTemplate}}
+                    <li>Permalink: <a href="{{baseURL}}{{pathFor 'blogShow'}}">{{baseURL}}{{pathFor 'blogShow'}}</a></li>
+                </ul>
+            </header>
+            <section class="e-content">
+                {{{html}}}
+            </section>
+        </article>
+    </div>
+</template>

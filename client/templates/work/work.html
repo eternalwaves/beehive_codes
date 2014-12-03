@@ -1,0 +1,32 @@
+<template name="work">
+    <div class="work">
+        <h2 class="title">Work{{#if currentCat}}: {{currentCat}}{{/if}}</h2>
+
+        {{#if items}}
+            {{#with workPage}}
+                {{{content}}}
+            {{/with}}
+
+            <ul id="portfolio">
+                {{#each items}}
+                    <li class="quarter">
+                        <img src="/portfolio/thumbs/{{thumb}}" alt="{{title}}">
+                        <div class="desc-container">
+                            <div class="description">
+                                <h3><a href="{{pathFor 'portfolioItem'}}">{{title}}</a></h3>
+
+                                <ul class="categories">
+                                    {{#each categories}}<li><a href="{{pathFor 'workCategory' category=this}}">{{this}}</a></li>{{/each}}
+                                </ul>
+
+                                <p class="excerpt">{{excerpt}}</p>
+                            </div>
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>There are no items under this category!</p>
+        {{/if}}
+    </div>
+</template>

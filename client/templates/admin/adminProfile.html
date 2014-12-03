@@ -1,0 +1,37 @@
+<template name="adminProfile">
+    <div class="admin">
+        <h2 class="title">Admin: View / Edit Profile</h2>
+
+        {{#if currentUser}}
+            <p class="toolbar"><a href="{{pathFor 'admin'}}">Go back to the Dashboard</a> or {{>logout}}</p>
+
+            {{>displayAdminProfile}}
+        {{else}}
+            <p>You are not logged in!</p>
+
+            {{>loginForm}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="displayAdminProfile">
+    {{#with user}}
+        <div><h3 class="inline">Name:</h3> <span id="profile-name">{{name}}</span></div>
+
+        <div><h3 class="inline">Username:</h3> <span id="profile-username">{{username}}</span></div>
+
+        <h3>Email(s):</h3>
+
+        <ul id="profile-emails">
+            {{#each emails}}
+                <li><span class="profile-email" id="profile-email-{{index}}">{{address}}</span> (<span class="profile-email-verified">{{#if verified}}Verified{{else}}Unverified{{/if}}</span>)</li>
+            {{/each}}
+        </ul>
+
+        {{#if about}}
+            <h3>About:</h3>
+
+            <div id="profile-about">{{{about}}}</div>
+        {{/if}}
+    {{/with}}
+</template>
