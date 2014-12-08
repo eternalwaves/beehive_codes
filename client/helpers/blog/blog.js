@@ -23,3 +23,7 @@ Template.blog.helpers({
         return htmlSmartQuotes(this.excerpt);
     }
 });
+
+Template.blog.rendered = function () {
+    revertQuotes($(".e-content code"), $(".e-content pre"));
+};

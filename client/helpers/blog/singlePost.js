@@ -16,3 +16,7 @@ Template.singlePost.helpers({
         return htmlSmartQuotes(this.html());
     }
 });
+
+Template.singlePost.rendered = function () {
+    revertQuotes($(".e-content code"), $(".e-content pre"));
+};
