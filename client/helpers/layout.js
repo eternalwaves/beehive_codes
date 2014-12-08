@@ -11,6 +11,13 @@ Template.layout.rendered = function () {
     });
 };
 
+Template.layout.events({
+    "click #menu-button": function (event) {
+        event.preventDefault();
+        $("#menu-button ~ ul").toggle();
+    }
+});
+
 Template.nav.helpers({
     links: function () {
         return Pages.find();

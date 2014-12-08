@@ -82,57 +82,70 @@ form {
         }
     }
     textarea {
-        background: @main-background-color;
+        background: transparent;
         .no-border;
         border-bottom: @black solid 1px;
+        border-radius: 0;
         color: @text-color;
         font-family: @sans-serif;
         .normal-font-size;
         height: @x-large-space;
+        .no-margin-padding;
         min-height: @medium-space;
         overflow: auto;
         line-height: 1.5em;
         resize: vertical;
         .left;
         width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -webkit-border-radius: 0;
         &:focus,
         &:hover {
             border-color: @red-orange;
         }
         &.error {
+            border-color: @red;
+            box-shadow: 0 0 @x-small-space @red;
             color: @red;
         }
     }
     input {
-        height: @medium-space;
-        overflow: initial;
-        resize: none;
-        &:extend(form textarea);
-        &:focus,
-        &:hover {
-            &:extend(form textarea:focus);
+        &[type=text],
+        &[type=email],
+        &[type=tel],
+        &[type=url],
+        &[type=password] {
+            height: @medium-space;
+            overflow: initial;
+            resize: none;
+            &:extend(form textarea);
+            &:focus,
+            &:hover {
+                &:extend(form textarea:focus);
+            }
+            &.error {
+                &:extend(form textarea.error);
+            }
+            .blog-admin-edit & {
+                .small-border(@black);
+            }
         }
         &[type=radio],
         &[type=checkbox] {
-            .no-border;
             .inline;
             .margin-left-right(@small-space);
-            width: auto;
-        }
-        &.error {
-            &:extend(form textarea.error);
-        }
-        .blog-admin-edit & {
-            .small-border(@black);
         }
     }
-    button {
+    button,
+    input[type=button] {
         &, &.btn {
+            background: @main-background-color;
             .small-border(@black);
             margin-top: @x-small-space;
             .center;
             .transition(all 0.3s ease 0s);
-            &:extend(form input);
+            &:extend(form input[type=text]);
             &:hover,
             &:focus {
                 background: @red-orange;
@@ -185,6 +198,7 @@ nav#main-nav,
 body > header,
 main,
 footer {
+    .no-margin;
     padding: @small-space;
     > :first-child {
         &, > :first-child {
@@ -209,7 +223,6 @@ footer {
         }
     }
 }
-
 
 /* Social icons */
 #social {
@@ -311,13 +324,12 @@ footer {
             }
         }
     }
-}   
+}
 
 /* Header styles */
 body > header {
     background: @yellow url("@{images}/honeycomb.jpg") repeat fixed;
     background: radial-gradient(transparent 25%, rgba(0,0,0,.3)), @yellow url("@{images}/honeycomb.jpg") repeat fixed;
-    .no-margin;
     overflow: hidden;
     position: relative;
     .center;
@@ -336,10 +348,38 @@ body > header {
 }
 nav#main-nav {
     background: @main-background-color;
-    .center;
+    > a#menu-button {
+        color: @text-color;
+        padding-left: 1.25rem;
+        position: relative;
+        text-decoration: none;
+        &:active,
+        &:focus,
+        &:hover {
+            color: @link-color;
+            &::before {
+                border-color: @link-color;
+            }
+        }
+        &::before {
+            border-bottom: .375rem double @black;
+            border-top: .125rem solid @black;    
+            content: "";
+            height: .125rem;
+            position: absolute;
+            left: 0;
+            top: .25rem; 
+            width: 1rem;
+            .transition(all 0.3s ease 0s);
+        }
+
+    }
     > ul {
-        .animation(slideFromTop, 0.3s, 1s, both);
+        .animation(fadeIn, 0, 1s, both);
+        .none;
+        margin-top: 0;
         .no-padding;
+        .center;
         li {
             .no-list;
             .quarter-width;
@@ -367,16 +407,12 @@ nav#main-nav {
 /* Main body styles */
 main {
     background: @main-background-color;
-    .no-margin;
     > :first-child {
         .animation(fadeIn, 0, 1.5s, both);
     }
     h2.title {
         font-size: 2em;
         .center;
-    }
-    img {
-        background: @main-background-color url("/img/loading.gif") center center no-repeat;
     }
 }
 
@@ -386,7 +422,6 @@ footer {
     border-top: @red-orange solid 2px;
     .clear;
     .small-font-size;
-    .no-margin;
     .center;
     > :first-child {
         margin-bottom: @small-space;
@@ -473,7 +508,7 @@ div.work {
         font-size: 0;
         .no-margin-padding;
         > li {
-            background: url("/img/loading.gif") center center no-repeat;
+            background: url("@{images}/loading.gif") center center no-repeat;
             .no-list;
             min-height: 254px;
             position: relative;
@@ -583,7 +618,7 @@ div.portfolio-item {
                 .block;
             }
             &.zoom {
-                .animation(fadeIn, 0, 0.4s, both);
+                .animation(fadeIn, 0, 0.3s, both);
                 background: rgba(0,0,0,.75);
                 cursor: pointer;
                 .block;
@@ -596,6 +631,7 @@ div.portfolio-item {
                 width: 100%;
                 img {
                     .no-border;
+                    .margin-bottom-top(@medium-space);
                     max-width: none;
                     position: relative;
                     .center;
@@ -633,6 +669,12 @@ div.error-page {
         .right;
         .middle;
         width: 30%;
+    }
+}
+div.loading {
+    .center;
+    img {
+        .middle;
     }
 }
 div#blog-admin {
@@ -692,6 +734,15 @@ div#blog-admin {
     footer {
         > * {
             width: 740px;
+        }
+    }
+    nav#main-nav {
+        > a#menu-button {
+            display: none;
+        }
+        > ul {
+            .animation(slideFromTop, 0.3s, 1s, both);
+            display: block !important;
         }
     }
 
