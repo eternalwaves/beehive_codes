@@ -2,15 +2,11 @@ var siteTitle = "Beehive.codes";
 var siteURL = "https://beehive.codes";
 
 Meteor.startup(function() {
-    reCAPTCHA.config({
-        publickey: "6LcVcP4SAAAAAKNZGCqV8eWQT4CZz8niwZbLVzD6"
-    });
     WebFontConfig = {
         google: { families: [ "Neuton:400,700,400italic:latin", "Source+Sans+Pro:400,400italic,700,700italic:latin" ] }
     };
     (function() {
         var wf = document.createElement("script"),
-            tiny = document.createElement("script"),
             s = document.getElementsByTagName("script")[0];
 
         wf.src = ("https:" == document.location.protocol ? "https" : "http") +
@@ -18,20 +14,21 @@ Meteor.startup(function() {
         wf.type = "text/javascript";
         wf.async = "true";
         s.parentNode.insertBefore(wf, s);
-
-        tiny.src = ("https:" == document.location.protocol ? "https" : "http") + "://tinymce.cachefly.net/4.1/tinymce.min.js";
-        tiny.type = "text/javascript";
-        tiny.async = "true";
-        s.parentNode.insertBefore(tiny, s);
     })();
     htmlSmartQuotes = function (html) {
-        return html = (html||'').replace(/\b'\b/g, "\&rsquo;")      // Apostrophes
-            .replace(/'(?=[^>]*<)\b/g, "&lsquo;")                   // Opening singles
-            .replace(/\b([\.\?\!,]*)(?=[^>]*<)'/g, "$1\&rsquo;")    // Closing singles
-            .replace(/"(?=[^>]*<)\b/g, "\&ldquo;")                  // Opening doubles
-            .replace(/\b([\.\?\!,]*)(?=[^>]*<)"/g, "$1\&rdquo;")    // Closing doubles
-            .replace(/\.\.\./g,  "\&hellip;")                       // ellipsis
-            .replace(/--/g,  "\&mdash;");                           // em-dashes
+        return html = (html||'').replace(/\b'\b/g, "&rsquo;")   // Apostrophes
+            .replace(/'(?=[^>]*<)\b/g, "&lsquo;")               // Opening singles
+            .replace(/\b([\.\?\!,]*)(?=[^>]*<)'/g, "$1&rsquo;") // Closing singles
+            .replace(/"(?=[^>]*<)\b/g, "&ldquo;")               // Opening doubles
+            .replace(/\b([\.\?\!,]*)(?=[^>]*<)"/g, "$1&rdquo;") // Closing doubles
+            .replace(/\.\.\./g,  "&hellip;")                    // ellipsis
+            .replace(/--/g,  "&mdash;");                        // em-dashes
+    };
+    htmlDumbQuotes = function (html) {
+        return html = html.replace(/(&rsquo;)|(&lsquo;)|(\u2018)|(\u2019)/g, "'") // revert to single quotes
+            .replace(/(&rdquo;)|(&ldquo;)|(\u201c)|(\u201d)/g, "\"")              // revert to double quotes
+            .replace(/&hellip;/, "...")                         // revert to three dots
+            .replace(/&mdash;/, "--");                          // revert to two dashes
     };
     smartQuotes = function (text) {
         return text = text.replace(/\b'\b/g, "\u2019")  // Apostrophes
@@ -42,6 +39,25 @@ Meteor.startup(function() {
             .replace(/\.\.\./g,  "\u2026")              // ellipsis
             .replace(/--/g,  "\u2014");                 // em-dashes
     };
+    revertQuotes = function (code, pre) {
+        var n,
+            html;
+        for (n = 0; n < code.length; n++) {
+            html = $(code[n]).html();
+            $(code[n]).html(htmlDumbQuotes(html));
+        }
+        for (n = 0; n < pre.length; n++) {
+            html = $(pre[n]).html();
+            $(pre[n]).html(htmlDumbQuotes(html));
+        }
+    };
+    return SEO.config({
+        title: "Beehive.codes",
+        meta: {
+            "description": "...development (structure) and design (aesthetics) for the web",
+            "keywords": "Elizabeth Kilrain, web, application, design, designer, development, developer, html, html5, css, css3, javascript, js, meteor, ember, angular, server-side, client-side, front-end"
+        }
+    });
 });
 
 UI.registerHelper("baseURL", function () {
