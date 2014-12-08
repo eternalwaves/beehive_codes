@@ -5,11 +5,6 @@ Template.work.helpers({
     content: function() {
         return htmlSmartQuotes(this.content);
     },
-    currentCat: function () {
-        if (this.currentCat) {
-            return this.currentCat.charAt(0).toUpperCase() + this.currentCat.slice(1);
-        }
-    },
     items: function () {
         var items = [];
         if (this.items.count() === 0) {
@@ -23,15 +18,3 @@ Template.work.helpers({
         return items;
     }
 });
-
-Template.work.rendered = function () {
-    var items = $("#portfolio li").hide();
-    function fadeInRecursive (elements) {
-        if (elements) {
-            $(elements.shift()).fadeIn(100, function() {
-                fadeInRecursive(elements);
-            });
-        }
-    }
-    fadeInRecursive($.makeArray(items));
-};
