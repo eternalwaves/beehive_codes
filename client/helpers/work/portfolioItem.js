@@ -75,13 +75,13 @@ Template.portfolioItem.rendered = function () {
     });
 
     $(document).keyup(function (event) {
-        if (event.which === 27) {
+        if (event.which === 27) {   // esc
             closeZoom();
         }
-        if (event.which === 37) {
+        if (event.which === 37) {   // left arrow
             prevImage();
         }
-        if (event.which === 39) {
+        if (event.which === 39) {   // right arrow
             nextImage();
         }
     });
@@ -114,15 +114,6 @@ Template.portfolioItem.events({
             $("body").css({overflow: "hidden"});
             // insert zoom after figure
             $(figure).after($(zoom));
-            // center image
-            if ($(img).height() < $(window).height()) {
-                $(img).css({
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    "-webkit-transform": "translateY(-50%)",
-                    "-ms-transform": "translateY(-50%)"
-                });
-            }
         }
     },
     "click figure.zoom": function (event) {
