@@ -11,7 +11,7 @@
                     {{else}}
                         {{authorName}}
                     {{/if}}</li>
-                    <li class="date">Published: <time class="dt-published" datetime="{{blogFormatDate publishedAt}}">{{blogFormatDate publishedAt}}</time></li>
+                    <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
                     {{> blogTagTemplate}}
                     <li>Permalink: <a href="{{baseURL}}{{pathFor 'blogShow'}}">{{baseURL}}{{pathFor 'blogShow'}}</a></li>
                 </ul>
