@@ -27,8 +27,8 @@ Meteor.startup(function() {
     htmlDumbQuotes = function (html) {
         return html = html.replace(/(&rsquo;)|(&lsquo;)|(\u2018)|(\u2019)/g, "'") // revert to single quotes
             .replace(/(&rdquo;)|(&ldquo;)|(\u201c)|(\u201d)/g, "\"")              // revert to double quotes
-            .replace(/&hellip;/, "...")                         // revert to three dots
-            .replace(/&mdash;/, "--");                          // revert to two dashes
+            .replace(/(&hellip;)|(\u2026)/g, "...")                         // revert to three dots
+            .replace(/(&mdash;)|(\u2014)/g, "--");                          // revert to two dashes
     };
     smartQuotes = function (text) {
         return text = text.replace(/\b'\b/g, "\u2019")  // Apostrophes
@@ -75,11 +75,13 @@ UI.registerHelper("baseURL", function () {
     return siteURL;
 });
 
-UI.registerHelper("formatTime", function (context, format) {
-    if (context)
-        if (!format)
-            format = "dddd, MMMM Do YYYY, h:mm:ss a";
-        return moment(new Date(context)).format(format);
+UI.registerHelper("formatDateTime", function (date, format) {
+    format = (typeof format === "undefined") ? "" : format;
+    if (format) {
+        return moment(new Date(date)).tz("America/Los_Angeles").format(format);
+    } else {
+        return moment(new Date(date)).tz("America/Los_Angeles").format();
+    }
 });
 
 UI.registerHelper("getSiteTitle", function () {
