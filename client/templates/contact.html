@@ -10,16 +10,18 @@
 
 <template name="contactForm">
     <div id="contact-notice"></div>
-    <form id="contact-form">
+    <form id="contact-form" novalidate>
         <label for="contact-name">Name:</label>
-        <input id="contact-name" name="contact-name" type="text" placeholder="Name">
+        <input id="contact-name" name="contact-name" type="text" placeholder="Name" required>
         <label for="contact-email">Email:</label>
-        <input id="contact-email" name="contact-email" type="email" placeholder="Email">
+        <input id="contact-email" name="contact-email" type="email" placeholder="Email" required>
         <label for="contact-subject">Brief Subject:</label>
-        <input id="contact-subject" name="contact-subject" type="text" placeholder="Brief Subject">
+        <input id="contact-subject" name="contact-subject" type="text" placeholder="Brief Subject" required>
         <label for="contact-message">Message:</label>
-        <textarea id="contact-message" name="contact-message" placeholder="Message"></textarea>
-        <!--{{> reCAPTCHA}}-->
+        <textarea id="contact-message" name="contact-message" placeholder="Message" required></textarea>
+        <label for="contact-check">Prove that you're not a robot:</label>
+        <p class="sub">Prove you're not a robot. Enter my first name below (case sensitive):</p>
+        <input id="contact-check" name="contact-check" type="text" placeholder="My first name (case sensitive)" required>
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>
     </form>

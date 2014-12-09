@@ -1,3 +1,10 @@
+function removeError(notice, obj) {
+    $(notice).html("");
+    $(notice).removeClass("success");
+    $(notice).hide();
+    $(obj).removeClass("error");
+}
+
 Template.contact.helpers({
     content: function () {
         return htmlSmartQuotes(this.content);
@@ -13,13 +20,15 @@ Template.contactForm.events({
                 name: $("#contact-name"),
                 email: $("#contact-email"),
                 subject: $("#contact-subject"),
-                message: $("#contact-message")
+                message: $("#contact-message"),
+                validation: $("#contact-check")
             },
             emailParts = {
                 name: $(contactFields["name"]).val().trim(),
                 email: $(contactFields["email"]).val().trim(),
                 subject: $(contactFields["subject"]).val().trim(),
-                message: $(contactFields["message"]).val().trim()
+                message: $(contactFields["message"]).val().trim(),
+                validation: $(contactFields["validation"]).val().trim()
             },
             regEx;
 
@@ -30,18 +39,11 @@ Template.contactForm.events({
             $(obj).focus();
             return false;
         }
-        function removeError(obj) {
-            $(notice).html("");
-            $(notice).removeClass("success");
-            $(notice).hide();
-            $(obj).removeClass("error");
-        }
-
         for (prop in emailParts) {
             if (!emailParts[prop]) {
                 return displayError("All fields are required.", contactFields[prop]);
             } else {
-                removeError(contactFields[prop]);
+                removeError(notice, contactFields[prop]);
                 switch (prop) {
                     case "name":
                         if (emailParts[prop].length < 2) {
@@ -64,6 +66,11 @@ Template.contactForm.events({
                             return displayError("Please enter a proper message.", contactFields[prop]);
                         }
                         break;
+                    case "validation":
+                        if (emailParts[prop] !== "Elizabeth") {
+                            return displayError("Sorry, no robots allowed!", contactFields[prop]);
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -75,6 +82,10 @@ Template.contactForm.events({
             emailParts["subject"],
             emailParts["message"]
         );
+        for (prop in contactFields) {
+            contactFields[prop].val("");
+            removeError(notice, $(contactFields[prop]));
+        }
         $(notice).addClass("success");
         $(notice).html("Thank you. Your message has been sent.");
         $(notice).show();
@@ -86,11 +97,12 @@ Template.contactForm.events({
                 name: $("#contact-name"),
                 email: $("#contact-email"),
                 subject: $("#contact-subject"),
-                message: $("#contact-message")
+                message: $("#contact-message"),
+                validation: $("#contact-check")
             },
             prop;
         for (prop in contactFields) {
-            removeError($(contactFields[prop]));
+            removeError(notice, $(contactFields[prop]));
         }
     }
 });
