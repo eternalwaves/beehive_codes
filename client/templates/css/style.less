@@ -44,6 +44,10 @@ a {
         color: @link-hover-color;
     }
 }
+code {
+    background: @off-white;
+    padding: @xxx-small-space @xx-small-space;
+}
 .sub {
     color: @secondary-text-color;
     font-weight: bold;
@@ -350,6 +354,7 @@ nav#main-nav {
     background: @main-background-color;
     > a#menu-button {
         color: @text-color;
+        .block;
         padding-left: 1.25rem;
         position: relative;
         text-decoration: none;
@@ -476,11 +481,10 @@ div.home {
                 .margin-bottom-top(@x-small-space);
             }
         }
-        .third.profile {
-            vertical-align: middle;
-            img {
-                max-height: 10.5em;
-                vertical-align: middle;
+        > div {
+            font-size: 1rem;
+            &.profile img {
+                max-height: 90vh;
             }
         }
     }
@@ -698,6 +702,11 @@ div#blog-admin {
             .auto-margin-left-right;
             .no-padding;
             width: 460px;
+            &#menu-button {
+                width: ~"calc(460px - 1.25rem)";
+                width: ~"-moz-calc(460px - 1.25rem)";
+                width: ~"-webkit-calc(460px - 1.25rem)";
+            }
         }
     }
 }
@@ -708,6 +717,11 @@ div#blog-admin {
     footer {
         > * {
             width: 610px;
+            &#menu-button {
+                width: ~"calc(610px - 1.25rem)";
+                width: ~"-moz-calc(610px - 1.25rem)";
+                width: ~"-webkit-calc(610px - 1.25rem)";
+            }
         }
     }
 
@@ -734,6 +748,11 @@ div#blog-admin {
     footer {
         > * {
             width: 740px;
+            &#menu-button {
+                width: ~"calc(740px - 1.25rem)";
+                width: ~"-moz-calc(740px - 1.25rem)";
+                width: ~"-webkit-calc(740px - 1.25rem)";
+            }
         }
     }
     nav#main-nav {
@@ -743,6 +762,17 @@ div#blog-admin {
         > ul {
             .animation(slideFromTop, 0.3s, 1s, both);
             display: block !important;
+        }
+    }
+
+    div.home .skills > div {
+        .third-width;
+        &.profile {
+            .middle;
+            img {
+                max-height: 10.5em;
+                .middle;
+            }
         }
     }
 
@@ -771,6 +801,11 @@ div#blog-admin {
     footer {
         > * {
             width: 920px;
+            &#menu-button {
+                width: ~"calc(920px - 1.25rem)";
+                width: ~"-moz-calc(920px - 1.25rem)";
+                width: ~"-webkit-calc(920px - 1.25rem)";
+            }
         }
     }
 
@@ -798,6 +833,11 @@ div#blog-admin {
     footer {
         > * {
             width: 1080px;
+            &#menu-button {
+                width: ~"calc(1080px - 1.25rem)";
+                width: ~"-moz-calc(1080px - 1.25rem)";
+                width: ~"-webkit-calc(1080px - 1.25rem)";
+            }
         }
     }
     div.work ul#portfolio li {
