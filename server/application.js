@@ -1,7 +1,4 @@
 Meteor.startup(function() {
-    reCAPTCHA.config({
-        privatekey: "6LcVcP4SAAAAAA1NIHxgbsQdwRkBkJnTp3bEWwwB"
-    });
 });
 Meteor.methods({
     sendEmail: function (to, from, subject, text) {
