@@ -22,10 +22,11 @@
                     </header>
                     <section class="e-content">
                         {{{excerpt}}}
+
+                        <p><a href="{{pathFor 'blogShow'}}">Read more</a></p>
                     </section>
                 </article>
 
-                <p><a href="{{pathFor 'blogShow'}}">[Read more]</a></p>
             {{else}}
                 <p>There are no posts yet!</p>
             {{/each}}
