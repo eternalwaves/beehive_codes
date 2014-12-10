@@ -1,7 +1,5 @@
-var siteTitle = "Beehive.codes";
-var siteURL = "https://beehive.codes";
-
 Meteor.startup(function() {
+    siteTitle = "Beehive.codes";
     WebFontConfig = {
         google: { families: [ "Neuton:400,700,400italic:latin", "Source+Sans+Pro:400,400italic,700,700italic:latin" ] }
     };
@@ -52,7 +50,7 @@ Meteor.startup(function() {
         }
     };
     return SEO.config({
-        title: "Beehive.codes",
+        title: siteTitle,
         meta: {
             description: "...development (structure) and design (aesthetics) for the web",
             keywords: "Elizabeth Kilrain, web, application, design, designer, development, developer, San Diego, html, html5, css, css3, php, ruby, rails, javascript, js, meteor, ember, angular, server-side, client-side, front-end",
@@ -60,20 +58,16 @@ Meteor.startup(function() {
             robots: "index, follow"
         },
         og: {
-            title: "Beehive.codes",
+            title: siteTitle,
             description: "...development (structure) and design (aesthetics) for the web",
-            url: "https://beehive.codes",
             image: "https://beehive.codes/img/og_image.jpg",
             site_name: "Beehive.codes"
-        },
-        twitter: {
-            url: "https://beehive.codes"
         }
     });
 });
 
 UI.registerHelper("baseURL", function () {
-    return siteURL;
+    return Meteor.absoluteUrl();
 });
 
 UI.registerHelper("formatDateTime", function (date, format) {
