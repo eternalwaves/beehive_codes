@@ -1,7 +1,7 @@
 Blog.config({
     rss: {
-        title: "Beehive.codes : Blog",
-        description: "...structure (development) and aesthetics (design) for the web"
+        title: "Blog | Beehive.codes",
+        description: "The blog of web and application developer and designer Elizabeth Kilrain."
     },
     adminRole: "blogAdmin",
     authorRole: "blogAuthor"

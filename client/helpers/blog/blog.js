@@ -1,8 +1,10 @@
 Blog.config({
     blogIndexTemplate: "blog",
     blogShowTemplate: "singlePost",
+    blogNotFoundTemplate: "notFound",
     syntaxHighlighting: true,
-    title: "Beehive.codes"
+    title: "Beehive.codes",
+    description: "The blog of web and application developer and designer Elizabeth Kilrain."
 });
 
 Template.blog.helpers({

@@ -56,7 +56,8 @@ Meteor.startup(function() {
         meta: {
             description: "...development (structure) and design (aesthetics) for the web",
             keywords: "Elizabeth Kilrain, web, application, design, designer, development, developer, San Diego, html, html5, css, css3, php, ruby, rails, javascript, js, meteor, ember, angular, server-side, client-side, front-end",
-            author: "Elizabeth Lynn Rakphongphairoj Kilrain"
+            author: "Elizabeth Lynn Rakphongphairoj Kilrain",
+            robots: "index, follow"
         },
         og: {
             title: "Beehive.codes",
