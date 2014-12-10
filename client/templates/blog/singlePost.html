@@ -13,7 +13,7 @@
                     {{/if}}</li>
                     <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
                     {{> blogTagTemplate}}
-                    <li>Permalink: <a href="{{baseURL}}{{pathFor 'blogShow'}}">{{baseURL}}{{pathFor 'blogShow'}}</a></li>
+                    <li>Permalink: <a href="{{urlFor 'blogShow'}}">{{urlFor "blogShow"}}</a></li>
                 </ul>
             </header>
             <section class="e-content">
