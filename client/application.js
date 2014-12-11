@@ -58,10 +58,9 @@ Meteor.startup(function() {
             robots: "index, follow"
         },
         og: {
-            title: siteTitle,
-            description: "...development (structure) and design (aesthetics) for the web",
-            image: "https://beehive.codes/img/og_image.jpg",
-            site_name: "Beehive.codes"
+            type: "website",
+            site_name: "Beehive.codes",
+            image: "https://beehive.codes/img/og_image.jpg"
         }
     });
 });

@@ -4,7 +4,10 @@ Blog.config({
     blogNotFoundTemplate: "notFound",
     syntaxHighlighting: true,
     title: "Beehive.codes",
-    description: "The blog of web and application developer and designer Elizabeth Kilrain."
+    description: "The blog of web and application developer and designer Elizabeth Kilrain.",
+    comments: {
+        disqusShortname: "beehivecodes"
+    }
 });
 
 Template.blog.helpers({
@@ -28,4 +31,6 @@ Template.blog.helpers({
 
 Template.blog.rendered = function () {
     revertQuotes($(".e-content code"), $(".e-content pre"));
+    SEO.setTitle("Blog | " + siteTitle);
+    SEO.setMeta('name="description"', "The blog of web and application developer and designer Elizabeth Kilrain.");
 };

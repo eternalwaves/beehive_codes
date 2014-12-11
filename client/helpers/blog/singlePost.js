@@ -1,4 +1,18 @@
 Template.singlePost.helpers({
+    shareData: function() {
+        var name = this.authorName();
+        return {
+            title: smartQuotes(this.title),
+            site_name: siteTitle,
+            author: function () {
+                return name;
+            },
+            thumbnail: function () {
+                return "/img/og_image.jpg";
+            },
+            excerpt: this.description
+        }
+    },
     username: function () {
         var name = this.authorName(),
             data;
@@ -19,4 +33,5 @@ Template.singlePost.helpers({
 
 Template.singlePost.rendered = function () {
     revertQuotes($(".e-content code"), $(".e-content pre"));
+    SEO.setMeta('name="description"', this.data.description);
 };
