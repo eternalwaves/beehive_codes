@@ -16,9 +16,11 @@
                     <li>Permalink: <a href="{{urlFor 'blogShow'}}">{{urlFor "blogShow"}}</a></li>
                 </ul>
             </header>
-            <section class="e-content">
+            <div class="e-content">
                 {{{html}}}
-            </section>
+            </div>
         </article>
+        {{> shareit shareData}}
+        {{> disqus this}}
     </div>
 </template>
