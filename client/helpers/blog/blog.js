@@ -30,7 +30,6 @@ Template.blog.helpers({
 });
 
 Template.blog.rendered = function () {
-    revertQuotes($(".e-content code"), $(".e-content pre"));
     SEO.setTitle("Blog | " + siteTitle);
     SEO.setMeta('name="description"', "The blog of web and application developer and designer Elizabeth Kilrain.");
 };

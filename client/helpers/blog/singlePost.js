@@ -1,6 +1,7 @@
 Template.singlePost.helpers({
     shareData: function() {
-        var name = this.authorName();
+        var name = this.authorName(),
+            thumbnail = (this.featureImg) ? this.featureImg : "/img/og_image.jpg";
         return {
             title: smartQuotes(this.title),
             site_name: siteTitle,
@@ -8,9 +9,9 @@ Template.singlePost.helpers({
                 return name;
             },
             thumbnail: function () {
-                return "/img/og_image.jpg";
+                return thumbnail;
             },
-            excerpt: this.description
+            description: this.description
         }
     },
     username: function () {
@@ -32,6 +33,5 @@ Template.singlePost.helpers({
 });
 
 Template.singlePost.rendered = function () {
-    revertQuotes($(".e-content code"), $(".e-content pre"));
     SEO.setMeta('name="description"', this.data.description);
 };

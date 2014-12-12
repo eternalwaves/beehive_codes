@@ -14,13 +14,32 @@ Meteor.startup(function() {
         s.parentNode.insertBefore(wf, s);
     })();
     htmlSmartQuotes = function (html) {
-        return html = (html||'').replace(/\b'\b/g, "&rsquo;")   // Apostrophes
+        html = (html||'').replace(/\b'\b/g, "&rsquo;")   // Apostrophes
             .replace(/'(?=[^>]*<)\b/g, "&lsquo;")               // Opening singles
             .replace(/\b([\.\?\!,]*)(?=[^>]*<)'/g, "$1&rsquo;") // Closing singles
             .replace(/"(?=[^>]*<)\b/g, "&ldquo;")               // Opening doubles
             .replace(/\b([\.\?\!,]*)(?=[^>]*<)"/g, "$1&rdquo;") // Closing doubles
             .replace(/\.\.\./g,  "&hellip;")                    // ellipsis
             .replace(/--/g,  "&mdash;");                        // em-dashes
+
+        // revert everything between <pre></pre> tags
+        html = html.replace(/<pre.*?>([\s\S]*?)<\/pre>/gim, function (match, code) {
+            html = match.replace(
+                code,
+                htmlDumbQuotes(code)
+            );
+            return html;
+        });
+
+        // revert everything between <code></code> tags
+        html = html.replace(/<code.*?>([\s\S]*?)<\/code>/gim, function (match, code) {
+            html = match.replace(
+                code,
+                htmlDumbQuotes(code)
+            );
+            return html;
+        });
+        return html;
     };
     htmlDumbQuotes = function (html) {
         return html = html.replace(/(&rsquo;)|(&lsquo;)|(\u2018)|(\u2019)/g, "'") // revert to single quotes
@@ -36,18 +55,6 @@ Meteor.startup(function() {
             .replace(/\b"/g, "\u201d")                  // Closing doubles
             .replace(/\.\.\./g,  "\u2026")              // ellipsis
             .replace(/--/g,  "\u2014");                 // em-dashes
-    };
-    revertQuotes = function (code, pre) {
-        var n,
-            html;
-        for (n = 0; n < code.length; n++) {
-            html = $(code[n]).html();
-            $(code[n]).html(htmlDumbQuotes(html));
-        }
-        for (n = 0; n < pre.length; n++) {
-            html = $(pre[n]).html();
-            $(pre[n]).html(htmlDumbQuotes(html));
-        }
     };
     return SEO.config({
         title: siteTitle,
