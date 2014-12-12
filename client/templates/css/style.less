@@ -59,6 +59,7 @@ blockquote {
     padding-left: @small-space;
 }
 img {
+    border: 0;
     max-width: 100%;
 }
 ul {
@@ -204,22 +205,22 @@ main,
 footer {
     .no-margin;
     padding: @small-space;
-    > :first-child {
-        &, > :first-child {
-            &, > :first-child {
-                &, > :first-child {
-                    &, > :first-child {
+    > *:first-child {
+        &, > *:first-child {
+            &, > *:first-child {
+                &, > *:first-child {
+                    &, > *:first-child {
                         margin-top: 0;
                     }
                 }
             }
         }
     }
-    > :last-child {
-        &, > :last-child {
-            &, > :last-child {
-                &, > :last-child {
-                    &, > :last-child {
+    > *:last-child {
+        &, > *:last-child {
+            &, > *:last-child {
+                &, > *:last-child {
+                    &, > *:last-child {
                         margin-bottom: 0;
                     }
                 }
@@ -338,12 +339,12 @@ body > header {
     position: relative;
     .center;
     h1 {
-        .animation(slideFromLeft, 0, 1s, both);
+        .animation(slideFromLeft, 0s, 1s, both);
         .center;
         .no-margin-padding;
         text-shadow: 0 0 5em #FFF;
         &.slideRight {
-            .animation(slideRight, 0, 1s, both);
+            .animation(slideRight, 0s, 1s, both);
         }
         img.logo {
             max-height: 20vh;
@@ -380,7 +381,7 @@ nav#main-nav {
 
     }
     > ul {
-        .animation(fadeIn, 0, 1s, both);
+        .animation(fadeIn, 0s, 1s, both);
         .none;
         margin-top: 0;
         .no-padding;
@@ -412,8 +413,8 @@ nav#main-nav {
 /* Main body styles */
 main {
     background: @main-background-color;
-    > :first-child {
-        .animation(fadeIn, 0, 1.5s, both);
+    > *:first-child {
+        .animation(fadeIn, 0s, 1.5s, both);
     }
     h2.title {
         font-size: 2em;
@@ -428,10 +429,10 @@ footer {
     .clear;
     .small-font-size;
     .center;
-    > :first-child {
+    > *:first-child {
         margin-bottom: @small-space;
     }
-    > :last-child {
+    > *:last-child {
         margin-top: @small-space;
     }
     .columns .half {
@@ -441,7 +442,7 @@ footer {
             font-size: 1.25em;
         }
         &:last-child {
-            > :last-child {
+            > *:last-child {
                 margin-bottom: 0;
             }
         }
@@ -532,13 +533,13 @@ div.work {
                 > * {
                     .margin-left-right(0);
                 }
-                > :first-child {
-                    &, & > :first-child {
+                > *:first-child {
+                    &, & > *:first-child {
                         margin-top: 0;
                     }
                 }
-                > :last-child {
-                    &, & > :last-child {
+                > *:last-child {
+                    &, & > *:last-child {
                         margin-bottom: 0;
                     }
                 }
@@ -580,7 +581,7 @@ div.work {
             }
             &:hover div.desc-container {
                 .block;
-                .animation(fadeIn, 0, 0.3s, both);
+                .animation(fadeIn, 0s, 0.3s, both);
             }
         }
     }
@@ -622,7 +623,7 @@ div.portfolio-item {
                 .block;
             }
             &.zoom {
-                .animation(fadeIn, 0, 0.3s, both);
+                .animation(fadeIn, 0s, 0.3s, both);
                 background: rgba(0,0,0,.75);
                 cursor: pointer;
                 .block;
