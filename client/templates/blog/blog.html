@@ -1,26 +1,26 @@
 <template name="blog">
-    <div class="blog">
+    <section class="blog" itemscope itemtype="http://schema.org/Blog">
         <h2 class="title">Blog{{#if tag}}: tagged &ldquo;{{tag}}&rdquo;{{/if}}</h2>
 
         <div class="h-feed">
             {{#each posts}}
-                <article class="h-entry">
+                <article class="h-entry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                     <header>
-                        <h3 class="p-name"><a href="{{pathFor 'blogShow'}}">{{title}}</a></h3>
+                        <h3 class="p-name" itemprop="headline"><a href="{{pathFor 'blogShow'}}">{{title}}</a></h3>
 
                         <ul class="post-info">
                             <li class="author">Author:
                             {{#if username}}
-                                <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}">{{authorName}}</a>
+                                <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
                             {{else}}
-                                {{authorName}}
+                                <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
                             {{/if}}</li>
-                            <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
+                            <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
                             {{> blogTagTemplate}}
-                            <li>Permalink: <a href="{{urlFor 'blogShow'}}">{{urlFor "blogShow"}}</a></li>
+                            <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
                         </ul>
                     </header>
-                    <div class="e-content">
+                    <div class="e-content" itemprop="articleBody">
                         {{{excerpt}}}
 
                         <p><a href="{{pathFor 'blogShow'}}">Read more</a></p>
@@ -33,7 +33,7 @@
 
             {{blogPager}}
         </div>
-    </div>
+    </section>
 </template>
 
 <template name="blogTagTemplate">

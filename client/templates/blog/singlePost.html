@@ -1,26 +1,26 @@
 <template name="singlePost">
-    <div class="blog">
-        <article class="h-entry single-post">
+    <section class="blog">
+        <article class="h-entry single-post" itemscope itemtype="http://schema.org/BlogPosting">
             <header>
-                <h2 class="p-name">{{title}}</h2>
+                <h2 class="p-name" itemprop="headline">{{title}}</h2>
 
                 <ul class="post-info">
                     <li class="author">Author:
                     {{#if username}}
-                        <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}">{{authorName}}</a>
+                        <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
                     {{else}}
-                        {{authorName}}
+                        <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
                     {{/if}}</li>
-                    <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
+                    <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
                     {{> blogTagTemplate}}
-                    <li>Permalink: <a href="{{urlFor 'blogShow'}}">{{urlFor "blogShow"}}</a></li>
+                    <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
                 </ul>
             </header>
-            <div class="e-content">
+            <div class="e-content" itemprop="articleBody">
                 {{{html}}}
             </div>
         </article>
         {{> shareit shareData}}
         {{> disqus this}}
-    </div>
+    </section>
 </template>

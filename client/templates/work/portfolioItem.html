@@ -1,23 +1,35 @@
 <template name="portfolioItem">
-    <div class="portfolio-item">
+    <section class="portfolio-item" itemscope itemtype="{{schema}}">
         <h2>{{title}}</h2>
 
         <div class="columns">
-            <section class="description half">
-                <ul class="categories">
-                    {{#each categories}}<li><a href="{{pathFor 'workCategory' category=this}}">{{this}}</a></li>{{/each}}
+            <div class="description half">
+                <ul class="properties">
+                    <li>Categories:
+                        <ul class="categories">
+                            {{#each categories}}<li><a href="{{pathFor 'workCategory' category=this}}">{{this}}</a></li>{{/each}}
+                        </ul>
+                    </li>
+                    <li>By:
+                        <ul class="by">
+                            {{#each by}}<li class="creator" itemprop="creator">{{this}}</li>{{/each}}
+                        </ul>
+                    </li>
+                    <li class="date">Published: <time datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt 'YYYY-MM'}}">{{formatDateTime publishedAt "MMMM YYYY"}}</time></li>
                 </ul>
-                
-                {{{description}}}
-            </section>
 
-            <section class="images half">
+                <div itemprop="about">
+                    {{{description}}}
+                </div>
+            </div>
+
+            <div class="images half">
             {{#each images}}
                 <figure>
-                    <img src="/portfolio/{{resolutionPath}}{{this}}" alt="{{title}}">
+                    <img src="/portfolio/{{resolutionPath}}{{this}}" itemprop="image" alt="{{title}}">
                 </figure>
             {{/each}}
-            </section>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
