@@ -74,17 +74,32 @@
 .small-border(@color) {
     border: @color solid 1px;
 }
+.small-border(@color, @style) {
+    border: @color @style 1px;
+}
+.small-border-bottom(@color) {
+    border-bottom: @color solid 1px;
+}
 .small-border-bottom(@color, @style) {
     border-bottom: @color @style 1px;
 }
 .small-border-left(@color) {
     border-left: @color solid 1px;
 }
+.small-border-left(@color, @style) {
+    border-left: @color @style 1px;
+}
 .small-border-right(@color) {
     border-right: @color solid 1px;
 }
+.small-border-right(@color, @style) {
+    border-right: @color @style 1px;
+}
 .small-border-top(@color) {
     border-top: @color solid 1px;
+}
+.small-border-top(@color, @style) {
+    border-top: @color @style 1px;
 }
 .medium-border(@color) {
     border: @color solid 2px;
@@ -92,17 +107,29 @@
 .medium-border(@color, @style) {
     border: @color @style 2px;
 }
+.medium-border-bottom(@color) {
+    border-bottom: @color solid 2px;
+}
+.medium-border-bottom(@color, @style) {
+    border-bottom: @color @style 2px;
+}
 .medium-border-left(@color) {
     border-left: @color solid 2px;
+}
+.medium-border-left(@color, @style) {
+    border-left: @color @style 2px;
 }
 .medium-border-right(@color) {
     border-right: @color solid 2px;
 }
+.medium-border-right(@color, @style) {
+    border-right: @color @style 2px;
+}
 .medium-border-top(@color) {
     border-top: @color solid 2px;
 }
-.medium-border-bottom(@color) {
-    border-bottom: @color solid 2px;
+.medium-border-top(@color, @style) {
+    border-top: @color @style 2px;
 }
 
 /* Float */
@@ -303,35 +330,11 @@
 
 
 /* Animations and effects */
-.animation(@name, @delay, @duration, @fill-mode) {
-    .animation-name(@name);
-    .animation-delay(@delay);
-    .animation-duration(@duration);
-    .animation-fill-mode(@fill-mode);
-}
-.animation-name(@name) {
-    -webkit-animation-name: @name;
-       -moz-animation-name: @name;
-         -o-animation-name: @name;
-            animation-name: @name;
-}
-.animation-delay(@delay) {
-    -webkit-animation-delay: @delay;
-       -moz-animation-delay: @delay;
-         -o-animation-delay: @delay;
-            animation-delay: @delay;
-}
-.animation-duration(@duration) {
-    -webkit-animation-duration: @duration;
-       -moz-animation-duration: @duration;
-         -o-animation-duration: @duration;
-            animation-duration: @duration;
-}
-.animation-fill-mode(@fill-mode) {
-    -webkit-animation-fill-mode: @fill-mode;
-       -moz-animation-fill-mode: @fill-mode;
-         -o-animation-fill-mode: @fill-mode;
-            animation-fill-mode: @fill-mode;
+.animation(@args) {
+    -webkit-animation: @args;
+       -moz-animation: @args;
+         -o-animation: @args;
+            animation: @args;
 }
 .translateX5(@name, @x1, @x2, @x3, @x4, @x5) {
     @-webkit-keyframes @name {
@@ -502,6 +505,40 @@
         }
         to {
             opacity: @o2;
+        }
+    }
+}
+.background2(@name, @p1, @p2) {
+    @-webkit-keyframes @name {
+        from {
+            background-position: @p1;
+        }
+        to {
+            background-position: @p2;
+        }
+    }
+    @-moz-keyframes @name {
+        from {
+            background-position: @p1;
+        }
+        to {
+            background-position: @p2;
+        }
+    }
+    @-o-keyframes @name {
+        from {
+            background-position: @p1;
+        }
+        to {
+            background-position: @p2;
+        }
+    }
+    @keyframes @name {
+        from {
+            background-position: @p1;
+        }
+        to {
+            background-position: @p2;
         }
     }
 }

@@ -1,4 +1,9 @@
+var seasonalClass = "";
+
 Template.layout.rendered = function () {
+    var startChristmas = moment("Nov 30", "MMM DD"),
+        endChristmas = (moment().isBefore(moment("Jan 8", "MMM DD"))) ? moment("Jan 8", "MMM DD") : moment("Jan 8", "MMM DD").add(1, "years");
+
     $(document).scroll(function () {
         var headerTop = $("header .logo").offset().top;
         if ($(document).scrollTop() >= headerTop) {
@@ -9,12 +14,30 @@ Template.layout.rendered = function () {
             $("header h1").removeClass("slideRight");
         }
     });
+
+    // snow if in Christmas season
+    if (moment().isAfter(startChristmas) && moment().isBefore(endChristmas)) {
+        seasonalClass = "snow";
+        $("#animation-controls").css("display", "block");
+        $("#animation-controls .message").text("Merry Christmas!");
+        $("#seasonal").css("display", "block").addClass(seasonalClass);
+    }
 };
 
 Template.layout.events({
     "click #menu-button": function (event) {
         event.preventDefault();
         $("#menu-button ~ ul").toggle();
+    },
+    "click .animation-button": function (event) {
+        var button = $(".animation-button");
+        event.preventDefault();
+        if ($(button).text() === "On") {
+            $(button).text("Off");
+        } else {
+            $(button).text("On");
+        }
+        $("#seasonal").toggleClass(seasonalClass);
     }
 });
 

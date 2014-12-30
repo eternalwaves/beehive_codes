@@ -334,17 +334,54 @@ footer {
 /* Header styles */
 body > header {
     background: @yellow url("@{images}/honeycomb.jpg") repeat fixed;
+    background: -webkit-radial-gradient(transparent 25%, rgba(0,0,0,.3)), @yellow url("@{images}/honeycomb.jpg") repeat fixed;
+    background: -moz-radial-gradient(transparent 25%, rgba(0,0,0,.3)), @yellow url("@{images}/honeycomb.jpg") repeat fixed;
+    background: -o-radial-gradient(transparent 25%, rgba(0,0,0,.3)), @yellow url("@{images}/honeycomb.jpg") repeat fixed;
     background: radial-gradient(transparent 25%, rgba(0,0,0,.3)), @yellow url("@{images}/honeycomb.jpg") repeat fixed;
     overflow: hidden;
     position: relative;
     .center;
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+    div#seasonal {
+        display: none;
+        height: 100%;
+        left: 0;
+        .no-margin-padding;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+        &.snow {
+            background-image: url("@{images}/snow1.png"), url("@{images}/snow2.png"), url("@{images}/snow3.png");
+            .animation(snowflakes 20s linear infinite);
+        }
+    }
+    #animation-controls {
+        .small-font-size;
+        font-weight: bold;
+        .no-margin-padding;
+        margin-top: @small-space;
+        text-align: right;
+        a.animation-button {
+            color: @secondary-text-color;
+            text-transform: uppercase;
+            &:active,
+            &:focus,
+            &:hover {
+                color: @secondary-text-color;
+            }
+        }
+    }
     h1 {
-        .animation(slideFromLeft, 0s, 1s, both);
+        .animation(slideFromLeft 1s linear);
         .center;
         .no-margin-padding;
         text-shadow: 0 0 5em #FFF;
         &.slideRight {
-            .animation(slideRight, 0s, 1s, both);
+            .animation(slideRight 1s both);
         }
         img.logo {
             max-height: 20vh;
@@ -381,7 +418,7 @@ nav#main-nav {
 
     }
     > ul {
-        .animation(fadeIn, 0s, 1s, both);
+        .animation(fadeIn 1s);
         .none;
         margin-top: 0;
         .no-padding;
@@ -414,7 +451,7 @@ nav#main-nav {
 main {
     background: @main-background-color;
     > *:first-child {
-        .animation(fadeIn, 0s, 1.5s, both);
+        .animation(fadeIn 1.5s);
     }
     h2.title {
         font-size: 2em;
@@ -581,7 +618,7 @@ section.work {
             }
             &:hover div.desc-container {
                 .block;
-                .animation(fadeIn, 0s, 0.3s, both);
+                .animation(fadeIn 0.3s both);
             }
         }
     }
@@ -618,7 +655,7 @@ section.portfolio-item {
                 .block;
             }
             &.zoom {
-                .animation(fadeIn, 0s, 0.3s, both);
+                .animation(fadeIn 0.3s);
                 background: rgba(0,0,0,.75);
                 cursor: pointer;
                 .block;
@@ -629,6 +666,7 @@ section.portfolio-item {
                 position: fixed;
                 top: 0;
                 width: 100%;
+                z-index: 2;
                 img {
                     .no-border;
                     .margin-bottom-top(@medium-space);
@@ -686,6 +724,7 @@ div#blog-admin {
 .translateX5(slideFromLeft, -100vw, 12.5vw, -6.25vw, 3.125vw, 0);
 .translateX2(slideRight, 0, 100vw);
 .translateY2(slideFromTop, -200%, 0);
+.background2(snowflakes, ~"0 0, 0 0, 0 0", ~"500px 1000px, 400px 400px, 300px 300px");
 .opacity2(fadeIn, 0, 1);
 
 /* Screen widths */
@@ -719,6 +758,10 @@ div#blog-admin {
                 width: ~"-webkit-calc(610px - 1.25rem)";
             }
         }
+    }
+
+    body > header #animation-controls {
+        margin-top: 0;
     }
 
     .half,
@@ -756,7 +799,7 @@ div#blog-admin {
             display: none;
         }
         > ul {
-            .animation(slideFromTop, 0.3s, 1s, both);
+            .animation(slideFromTop 1s ease 0.3s);
             display: block !important;
         }
     }
