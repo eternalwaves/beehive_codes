@@ -75,15 +75,29 @@ form {
     .auto-margin-left-right;
     max-width: 100%;
     width: 30em;
+    &#questionnaire-form,
     &#edit-profile-form,
     .blog-admin-edit & {
         width: 100%;
     }
+    fieldset {
+        .small-border(@link-color);
+        .margin-bottom-top(@small-space);
+    }
+    legend {
+        color: @link-color;
+        font-family: @serif;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
     label {
         .no-display;
         .left;
+        section.questionnaire &,
         .blog-admin-edit & {
             .block;
+            font-weight: bold;
+            margin-top: @small-space;
         }
     }
     textarea {
@@ -138,8 +152,10 @@ form {
         }
         &[type=radio],
         &[type=checkbox] {
-            .inline;
-            .margin-left-right(@small-space);
+            &, section.questionnaire & {
+                .inline;
+                .margin-left-right(@small-space);
+            }
         }
     }
     button,
@@ -159,6 +175,10 @@ form {
             + button {
                 margin-top: 0;
             }
+        }
+        section.questionnaire & {
+            .padding-left-right(@x-small-space);
+            width: auto;
         }
     }
     &#edit-profile-form,
@@ -194,7 +214,7 @@ figure {
 /* Margins and padding */
 nav#main-nav,
 main,
-footer {
+body > footer {
     &.full-width > * {
         width: 100%;
     }
@@ -202,7 +222,7 @@ footer {
 nav#main-nav,
 body > header,
 main,
-footer {
+body > footer {
     .no-margin;
     padding: @small-space;
     > *:first-child {
@@ -360,6 +380,7 @@ body > header {
         }
     }
     #animation-controls {
+        display: none;
         .small-font-size;
         font-weight: bold;
         .no-margin-padding;
@@ -460,7 +481,7 @@ main {
 }
 
 /* Footer styles */
-footer {
+body > footer {
     background: @main-background-color;
     border-top: @red-orange solid 2px;
     .clear;
@@ -528,15 +549,53 @@ section.home {
     }
 }
 section.blog {
-    .post-info {
+    article > footer {
+        .small-border-top(@pale-grey, dashed);
         color: @secondary-text-color;
         .small-font-size;
+        margin: 1em 0;
+        padding: 0;
+        padding-top: 1em;
+        text-align: left;
+        .post-info {
+            margin: 0;
+            padding: 0;
+            > li {
+                display: inline;
+                list-style: none;
+                &::after {
+                    content: " |";
+                }
+                &:last-child::after {
+                    content: "";
+                }
+            }
+        }
+    }
+    .dt-published {
+        background: @red-orange;
+        border: @white double 3px;
+        color: @white;
+        font-variant: small-caps;
+        margin-left: -2rem;
+        padding: .25em .5em;
+        text-decoration: none;
+        a,
+        a:active,
+        a:focus,
+        a:hover {
+            color: @white;
+            text-decoration: none;
+        }
     }
     .e-content > section {
         .divided-section;
     }
     .h-feed .h-entry {
         .divided-section;
+    }
+    .h-entry {
+        margin-left: 2rem;
     }
     .pname a {
         color: @text-color;
@@ -678,8 +737,10 @@ section.portfolio-item {
         }
     }
 }
-section.contact {
+section.contact,
+section.questionnaire {
     .center;
+    #questionnaire-notice,
     #contact-notice {
         color: @red;
         .small-font-size;
@@ -731,7 +792,7 @@ div#blog-admin {
 @media screen and (min-width: 480px) {
     nav#main-nav,
     main,
-    footer {
+    body > footer {
         .padding-left-right(0);
         > * {
             .auto-margin-left-right;
@@ -749,7 +810,7 @@ div#blog-admin {
 @media screen and (min-width: 640px) {
     nav#main-nav,
     main,
-    footer {
+    body > footer {
         > * {
             width: 610px;
             &#menu-button {
@@ -784,7 +845,7 @@ div#blog-admin {
 @media screen and (min-width: 768px) {
     nav#main-nav,
     main,
-    footer {
+    body > footer {
         > * {
             width: 740px;
             &#menu-button {
@@ -837,7 +898,7 @@ div#blog-admin {
 @media screen and (min-width: 960px) {
     nav#main-nav,
     main,
-    footer {
+    body > footer {
         > * {
             width: 920px;
             &#menu-button {
@@ -869,7 +930,7 @@ div#blog-admin {
 @media screen and (min-width: 1200px) {
     nav#main-nav,
     main,
-    footer {
+    body > footer {
         > * {
             width: 1080px;
             &#menu-button {
@@ -908,7 +969,7 @@ div#blog-admin {
     }
     body > header,
     main,
-    footer {
+    body > footer {
         .padding-bottom-top(@medium-space);
     }
 }

@@ -6,25 +6,27 @@
             {{#each posts}}
                 <article class="h-entry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                     <header>
-                        <h3 class="p-name" itemprop="headline"><a href="{{pathFor 'blogShow'}}">{{title}}</a></h3>
+                        <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}"><a href="{{pathFor 'blogShow'}}">{{formatDateTime publishedAt "MMMM Do, YYYY"}}</a></time>
 
-                        <ul class="post-info">
-                            <li class="author">Author:
-                            {{#if username}}
-                                <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
-                            {{else}}
-                                <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
-                            {{/if}}</li>
-                            <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
-                            {{> blogTagTemplate}}
-                            <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
-                        </ul>
+                        <h3 class="p-name" itemprop="headline"><a href="{{pathFor 'blogShow'}}">{{title}}</a></h3>
                     </header>
                     <div class="e-content" itemprop="articleBody">
                         {{{excerpt}}}
 
                         <p><a href="{{pathFor 'blogShow'}}">Read more</a></p>
                     </div>
+                    <footer>
+                        <ul class="post-info">
+                            <li>Published at {{formatDateTime publishedAt "hh:mma z"}} by
+                                {{#if username}}
+                                    <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
+                                {{else}}
+                                    <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
+                                {{/if}}</li>
+                            {{>blogTagTemplate}}
+                            <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
+                        </ul>
+                    </footer>
                 </article>
 
             {{else}}
@@ -38,6 +40,6 @@
 
 <template name="blogTagTemplate">
     {{#if tags}}
-        <li class="post-tags">Tags: {{blogFormatTags tags}}</li>
+        <li>Tags: {{blogFormatTags tags}}</li>
     {{/if}}
 </template>

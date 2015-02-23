@@ -1,7 +1,8 @@
 Template.singlePost.helpers({
     shareData: function() {
         var name = this.authorName(),
-            thumbnail = (this.featureImg) ? this.featureImg : "/img/og_image.jpg";
+            thumbnail = (this.featureImg) ? this.featureImg : "/img/og_image.jpg",
+            description = (this.description) ? this.description : this.excerpt;
         return {
             title: smartQuotes(this.title),
             site_name: siteTitle,
@@ -11,7 +12,7 @@ Template.singlePost.helpers({
             thumbnail: function () {
                 return thumbnail;
             },
-            description: this.description
+            description: description
         }
     },
     username: function () {

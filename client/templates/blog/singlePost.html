@@ -2,23 +2,25 @@
     <section class="blog">
         <article class="h-entry single-post" itemscope itemtype="http://schema.org/BlogPosting">
             <header>
-                <h2 class="p-name" itemprop="headline">{{title}}</h2>
+                <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY"}}</time>
 
-                <ul class="post-info">
-                    <li class="author">Author:
-                    {{#if username}}
-                        <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
-                    {{else}}
-                        <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
-                    {{/if}}</li>
-                    <li class="date">Published: <time class="dt-published" datetime="{{formatDateTime publishedAt ''}}" itemprop="datePublished" content="{{formatDateTime publishedAt ''}}">{{formatDateTime publishedAt "MMMM Do, YYYY hh:mma z"}}</time></li>
-                    {{> blogTagTemplate}}
-                    <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
-                </ul>
+                <h2 class="p-name" itemprop="headline">{{title}}</h2>
             </header>
             <div class="e-content" itemprop="articleBody">
                 {{{html}}}
             </div>
+            <footer>
+                <ul class="post-info">
+                    <li>Published at {{formatDateTime publishedAt "hh:mma z"}} by
+                        {{#if username}}
+                            <a class="p-author h-card" href="{{pathFor 'userProfile' username=username}}" rel="author" itemprop="author" content="Elizabeth Kilrain">{{authorName}}</a>
+                        {{else}}
+                            <span itemprop="author" content="Elizabeth Kilrain">{{authorName}}</span>
+                        {{/if}}</li>
+                    {{>blogTagTemplate}}
+                    <li>Permalink: <a href="{{urlFor 'blogShow'}}" itemprop="url">{{urlFor "blogShow"}}</a></li>
+                </ul>
+            </footer>
         </article>
         {{> shareit shareData}}
         {{> disqus this}}
