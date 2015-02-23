@@ -2,7 +2,14 @@ var seasonalClass = "";
 
 Template.layout.rendered = function () {
     var startChristmas = moment("Nov 30", "MMM DD"),
-        endChristmas = (moment().isBefore(moment("Jan 8", "MMM DD"))) ? moment("Jan 8", "MMM DD") : moment("Jan 8", "MMM DD").add(1, "years");
+        endChristmas = moment("Jan 8", "MMM DD");
+
+    if (moment().isBefore(endChristmas)) {
+        startChristmas = moment("Nov 30", "MMM DD").subtract(1, "years");
+    }
+    if (moment().isAfter(startChristmas)) {
+        endChristmas = moment("Jan 8", "MMM DD").add(1, "years");
+    }
 
     $(document).scroll(function () {
         var headerTop = $("header .logo").offset().top;
