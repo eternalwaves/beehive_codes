@@ -1,0 +1,152 @@
+<template name="questionnaire">
+    <section class="questionnaire">
+        <h2 class="title">Web Design Questionnaire</h2>
+
+        <p>Please fill out the form below to help me better understand what you're looking for.</p>
+
+        {{>questionnaireForm}}
+    </section>
+</template>
+
+<template name="questionnaireForm">
+    <div id="questionnaire-notice"></div>
+    <form id="questionnaire-form" novalidate>
+        <fieldset>
+            <legend>Basic Information:</legend>
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text" value="{{name}}" required>
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="email" value="{{email}}" required>
+            <label for="business">Business / Organization Name:</label>
+            <input id="business" name="business" type="text" value="{{business}}">
+            <label for="clientID">Client ID:</label>
+            <input id="clientID" name="clientID" type="text" value="{{clientID}}">
+            <label for="projectID">Project ID:</label>
+            <input id="projectID" name="projectID" type="text" value="{{projectID}}">
+        </fieldset>
+        <fieldset>
+            <legend>General Questions:</legend>
+            <label for="why">Why are you rebuilding your website?</label>
+            <textarea id="why" name="why" required>{{why}}</textarea>
+            <label for="problems">What problems does your current website have that you are trying to solve / eliminate?</label>
+            <textarea id="problems" name="problems" required>{{problems}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Goals:</legend>
+            <label for="goals1">How will you measure if the new site is successful? Please list at least 3 specific goals.</label>
+            <input id="goals1" name="goals" type="text" placeholder="Goal #1" required>
+            <input id="goals2" name="goals" type="text" placeholder="Goal #2" required>
+            <input id="goals3" name="goals" type="text" placeholder="Goal #3" required>
+            <input id="goals4" name="goals" type="text" placeholder="Goal #4">
+            <input id="goals5" name="goals" type="text" placeholder="Goal #5">
+        </fieldset>
+        <fieldset>
+            <legend>Sales:</legend>
+            <label for="conversions">How do you currently find &amp; convert new customers / sales?</label>
+            <textarea id="conversions" name="conversions" required>{{conversions}}</textarea>
+            <label for="sales">How do you think the new website will help with your sales process?</label>
+            <textarea id="sales" name="sales" required>{{sales}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Targeting / Advertising:</legend>
+            <label for="socialmedia">Do you do any online advertising or use social media (Twitter / Facebook Fan Page / etc)?</label>
+            <textarea id="socialmedia" name="socialmedia" required>{{socialmedia}}</textarea>
+            <label for="targetaudience">Describe your target audience (please be as specific as possible).</label>
+            <textarea id="targetaudience" name="targetaudience" required>{{targetaudience}}</textarea>
+            <label for="whyyou">Describe the key reasons why your target audience chooses your products/service.</label>
+            <textarea id="whyyou" name="whyyou" required>{{whyyou}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Competition:</legend>
+            <label for="competition1">Who are your top 3 competitors and what are their website URLs?</label>
+            <input id="competition1" name="competition" type="text" placeholder="Competitor #1" required>
+            <input id="competition2" name="competition" type="text" placeholder="Competitor #2" required>
+            <input id="competition3" name="competition" type="text" placeholder="Competitor #3" required>
+        </fieldset>
+        <fieldset>
+            <legend>Function:</legend>
+            <label for="actions1">What are the 3 most important / ideal actions a user could complete when visiting your site?</label>
+            <input id="actions1" name="actions" type="text" placeholder="Action #1" required>
+            <input id="actions2" name="actions" type="text" placeholder="Action #2" required>
+            <input id="actions3" name="actions" type="text" placeholder="Action #3" required>
+            <label for="navigation">Do you have an idea of what the primary and/or secondary navigation of the site will be (Home, About Us, Contact, etc.)?</label>
+            <textarea id="navigation" name="navigation" required>{{navigation}}</textarea>
+            <label for="features">Aside from content, what utilities &amp; features should the site have (cart, newsletter signup, search, blog, etc.)?</label>
+            <textarea id="features" name="features" required>{{features}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>SEO:</legend>
+            <label for="SEO">How important is it to be found in the search engines? Do you have an SEO plan?</label>
+            <textarea id="SEO" name="SEO" required>{{SEO}}</textarea>
+            <label for="analytics">Can you provide access to any website traffic tracking / conversion analytics or reports?</label>
+            <textarea id="analytics" name="analytics" required>{{analytics}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Design:</legend>
+            <label for="sitesyoulike1">List 3 websites that have designs, layouts or functionality elements that you like.</label>
+            <input id="sitesyoulike1" name="sitesyoulike" type="text" placeholder="Site #1" required>
+            <input id="sitesyoulike2" name="sitesyoulike" type="text" placeholder="Site #2" required>
+            <input id="sitesyoulike3" name="sitesyoulike" type="text" placeholder="Site #3" required>
+            <label for="colors">What colors would you like to see (or not see) in your design?</label>
+            <textarea id="colors" name="colors" required>{{colors}}</textarea>
+            <label for="cost1">Mark any of the words below if you feel your brand leans more towards one side than the other.</label>
+            <p class="sub">Not all lines need to be marked, only ones that you feel strongly about.</p>
+            <div class="columns">
+                <div class="third left"><input id="cost1" type="radio" name="cost" value="expensive">Expensive</div>
+                <div class="third left"><input id="cost2" type="radio" name="cost" value="economical">Economical</div>
+                <div class="third left"><input id="cost3" type="radio" name="cost" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="mood1" type="radio" name="mood" value="playful">Playful</div>
+                <div class="third left"><input id="mood2" type="radio" name="mood" value="serious">Serious</div>
+                <div class="third left"><input id="mood3" type="radio" name="mood" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="modernclassic1" type="radio" name="modernclassic" value="modern">Modern</div>
+                <div class="third left"><input id="modernclassic2" type="radio" name="modernclassic" value="classic">Classic</div>
+                <div class="third left"><input id="modernclassic3" type="radio" name="modernclassic" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="rawrefined1" type="radio" name="rawrefined" value="raw">Raw</div>
+                <div class="third left"><input id="rawrefined2" type="radio" name="rawrefined" value="refined">Refined</div>
+                <div class="third left"><input id="rawrefined3" type="radio" name="rawrefined" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="uniqueness1" type="radio" name="uniqueness" value="exotic">Exotic</div>
+                <div class="third left"><input id="uniqueness2" type="radio" name="uniqueness" value="commonplace">Commonplace</div>
+                <div class="third left"><input id="uniqueness3" type="radio" name="uniqueness" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="demeanor1" type="radio" name="demeanor" value="sporty">Sporty</div>
+                <div class="third left"><input id="demeanor2" type="radio" name="demeanor" value="elegant">Elegant</div>
+                <div class="third left"><input id="demeanor3" type="radio" name="demeanor" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="adventurous1" type="radio" name="adventurous" value="adventurous">Adventurous</div>
+                <div class="third left"><input id="adventurous2" type="radio" name="adventurous" value="secure">Secure</div>
+                <div class="third left"><input id="adventurous3" type="radio" name="adventurous" value="neither">Neither</div>
+            </div>
+            <div class="columns">
+                <div class="third left"><input id="gender1" type="radio" name="gender" value="masculine">Masculine</div>
+                <div class="third left"><input id="gender2" type="radio" name="gender" value="feminine">Feminine</div>
+                <div class="third left"><input id="gender3" type="radio" name="gender" value="neither">Neither</div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Maintenance:</legend>
+            <label for="maintenance">Do you intend to keep the site updated? If so, how often and who is responsible for updating and providing content?</label>
+            <textarea id="maintenance" name="maintenance" required>{{maintenance}}</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Final Questions:</legend>
+            <label for="only">Finish this sentence: We are the ONLY</label>
+            <input id="only" name="only" type="text" value="{{only}}" required>
+            <label for="comments">Any other comments:</label>
+            <textarea id="comments" name="comments">{{comments}}</textarea>
+        </fieldset>
+        <p class="sub">Prove you're not a robot. Enter my first name below (case sensitive):</p>
+        <input id="validation" name="validation" type="text" placeholder="My first name (case sensitive)" required>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</template>

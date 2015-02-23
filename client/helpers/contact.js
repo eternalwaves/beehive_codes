@@ -30,7 +30,8 @@ Template.contactForm.events({
                 message: $(contactFields["message"]).val().trim(),
                 validation: $(contactFields["validation"]).val().trim()
             },
-            regEx;
+            regEx,
+            emailOptions;
 
         function displayError(message, obj) {
             $(notice).html(message);
@@ -76,12 +77,13 @@ Template.contactForm.events({
                 }
             }
         }
-        Meteor.call("sendEmail",
-            "elizabeth@beehive.codes",
-            emailParts["name"] + " <" + emailParts["email"] + ">",
-            emailParts["subject"],
-            emailParts["message"]
-        );
+        emailOptions = {
+            to: "elizabeth@beehive.codes",
+            from: emailParts["name"] + " <" + emailParts["email"] + ">",
+            subject: emailParts["subject"],
+            text: emailParts["message"]
+        };
+        Meteor.call("sendEmail", emailOptions);
         for (prop in contactFields) {
             contactFields[prop].val("");
             removeError(notice, $(contactFields[prop]));
